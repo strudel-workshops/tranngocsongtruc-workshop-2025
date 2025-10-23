@@ -25,13 +25,13 @@ export const DataView: React.FC<DataViewProps> = ({
   const [pageSize, setPageSize] = useState(25);
   const [offset, setOffest] = useState(page * pageSize);
   // CUSTOMIZE: the unique ID field for the data source
-  const dataIdField = 'Id';
+  const dataIdField = 'id';
   // CUSTOMIZE: query mode, 'client' or 'server'
   const queryMode = 'client';
   const { isPending, isFetching, isError, data, error } = useListQuery({
     activeFilters,
     // CUSTOMIZE: the table data source
-    dataSource: 'dummy-data/exoplanets.csv',
+    dataSource: 'data/real-data/metadata.json',
     filterConfigs,
     offset,
     page,
@@ -89,39 +89,50 @@ export const DataView: React.FC<DataViewProps> = ({
         // CUSTOMIZE: the table columns
         columns={[
           {
-            field: 'Planet Name',
-            headerName: 'Planet Name',
+            field: 'filename',
+            headerName: 'Filename',
+            width: 250,
+          },
+          {
+            field: 'measurement_type',
+            headerName: 'Measurement Type',
+            width: 180,
+          },
+          {
+            field: 'sample_name',
+            headerName: 'Sample Name',
             width: 200,
           },
           {
-            field: 'Planet Host',
-            headerName: 'Planet Host',
-            width: 200,
+            field: 'detector',
+            headerName: 'Detector',
+            width: 180,
           },
           {
-            field: 'Discovery Method',
-            headerName: 'Discovery Method',
-            width: 200,
+            field: 'mode',
+            headerName: 'Mode',
+            width: 160,
           },
           {
-            field: 'Orbital Period Days',
-            headerName: 'Orbital Period',
-            units: 'days',
+            field: 'voltage_kv',
+            headerName: 'Voltage',
+            units: 'kV',
             type: 'number',
-            width: 200,
+            width: 120,
           },
           {
-            field: 'Mass',
-            headerName: 'Mass',
-            units: 'Earth Mass',
+            field: 'resolution_pm',
+            headerName: 'Resolution',
+            units: 'pm',
             type: 'number',
-            width: 200,
+            width: 140,
           },
           {
-            field: 'Eccentricity',
-            headerName: 'Eccentricity',
+            field: 'file_size_mb',
+            headerName: 'File Size',
+            units: 'MB',
             type: 'number',
-            width: 200,
+            width: 120,
           },
         ]}
         disableColumnSelector

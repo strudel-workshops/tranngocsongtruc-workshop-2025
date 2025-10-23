@@ -16,51 +16,103 @@ export const Route = createFileRoute('/explore-data/')({
 // CUSTOMIZE: the filter definitions
 const filterConfigs: FilterConfig[] = [
   {
-    field: 'Discovery Method',
-    label: 'Discovery Method',
+    field: 'measurement_type',
+    label: 'Measurement Type',
     operator: 'contains-one-of',
     filterComponent: 'CheckboxList',
     filterProps: {
       options: [
         {
-          label: 'Astrometry',
-          value: 'Astrometry',
+          label: '4D-STEM',
+          value: '4D-STEM',
         },
         {
-          label: 'Disk Kinematics',
-          value: 'Disk Kinematics',
+          label: '4D-STEM/CBED',
+          value: '4D-STEM/CBED',
         },
         {
-          label: 'Eclipse Timing Variations',
-          value: 'Eclipse Timing Variations',
+          label: 'EDS Hyperspectral Map',
+          value: 'EDS Hyperspectral Map',
         },
         {
-          label: 'Imaging',
-          value: 'Imaging',
+          label: 'EELS Hyperspectral',
+          value: 'EELS Hyperspectral',
         },
         {
-          label: 'Microlensing',
-          value: 'Microlensing',
+          label: 'CL Point Spectra',
+          value: 'CL Point Spectra',
         },
         {
-          label: 'Radial Velocity',
-          value: 'Radial Velocity',
+          label: 'CL Hyperspectral',
+          value: 'CL Hyperspectral',
         },
         {
-          label: 'Transit',
-          value: 'Transit',
+          label: 'HAADF',
+          value: 'HAADF',
+        },
+        {
+          label: 'ADF',
+          value: 'ADF',
+        },
+        {
+          label: 'TEM',
+          value: 'TEM',
+        },
+        {
+          label: 'Diffraction',
+          value: 'Diffraction',
         },
       ],
     },
   },
   {
-    field: 'Mass',
-    label: 'Mass',
+    field: 'detector',
+    label: 'Detector',
+    operator: 'contains-one-of',
+    filterComponent: 'CheckboxList',
+    filterProps: {
+      options: [
+        {
+          label: 'EMPAD',
+          value: 'EMPAD',
+        },
+        {
+          label: 'Ultra-X EDS',
+          value: 'Ultra-X EDS',
+        },
+        {
+          label: 'Continuum K3-IS',
+          value: 'Continuum K3-IS',
+        },
+        {
+          label: 'Ceta-S CMOS',
+          value: 'Ceta-S CMOS',
+        },
+        {
+          label: 'Attolight CL Mirror',
+          value: 'Attolight CL Mirror',
+        },
+      ],
+    },
+  },
+  {
+    field: 'voltage_kv',
+    label: 'Voltage (kV)',
     operator: 'between-inclusive',
     filterComponent: 'RangeSlider',
     filterProps: {
       min: 0,
-      max: 10000,
+      max: 300,
+    },
+  },
+  {
+    field: 'file_size_mb',
+    label: 'File Size (MB)',
+    operator: 'between-inclusive',
+    filterComponent: 'RangeSlider',
+    filterProps: {
+      min: 0,
+      max: 2500,
     },
   },
 ];
@@ -94,7 +146,7 @@ function DataExplorer() {
           // CUSTOMIZE: the page title
           pageTitle="Explore Data App"
           // CUSTOMIZE: the page description
-          description="Description of this app"
+          description="Exploring mult-dimensional 4DStem, EELS, and CL datasets"
           sx={{
             marginBottom: 1,
             padding: 2,
